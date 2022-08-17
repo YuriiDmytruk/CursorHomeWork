@@ -20,4 +20,6 @@ console.log(500 - sumOfPrice);
 console.log((+penPrice.toFixed(2) + +diaryPrice.toFixed(2) + +bookPrice.toFixed(2)) / 3)
 
 let randomPersentDiscount = Math.round(Math.random() * 100);
-console.log(randomPersentDiscount)
+console.log(randomPersentDiscount);
+
+console.log((sumOfPrice - (sumOfPrice / 100) * randomPersentDiscount).toFixed(2));
