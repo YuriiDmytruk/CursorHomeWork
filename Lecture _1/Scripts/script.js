@@ -5,5 +5,8 @@ let bookPrice = 123.965;
 console.log(Math.max(penPrice, diaryPrice, bookPrice))
 console.log(Math.min(penPrice, diaryPrice, bookPrice))
 
-let sumPrice = penPrice + diaryPrice + bookPrice;
-console.log(sumPrice);
+let sumOfPrice = penPrice + diaryPrice + bookPrice;
+console.log(sumOfPrice);
+
+let sumOfFloorPrices = Math.floor(penPrice) + Math.floor(diaryPrice) + Math.floor(bookPrice);
+console.log(sumOfFloorPrices);
