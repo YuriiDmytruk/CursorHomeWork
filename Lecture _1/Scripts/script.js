@@ -11,4 +11,6 @@ console.log(sumOfPrice);
 let sumOfFloorPrices = Math.floor(penPrice) + Math.floor(diaryPrice) + Math.floor(bookPrice);
 console.log(sumOfFloorPrices);
 
-console.log(Math.round(sumOfFloorPrices / 100) * 100)
+console.log(Math.round(sumOfFloorPrices / 100) * 100);
+
+console.log(sumOfFloorPrices % 2 == 0);
