@@ -23,3 +23,5 @@ let randomPersentDiscount = Math.round(Math.random() * 100);
 console.log(randomPersentDiscount);
 
 console.log((sumOfPrice - (sumOfPrice / 100) * randomPersentDiscount).toFixed(2));
+
+console.log((sumOfPrice / 2) - ((sumOfPrice / 100) * randomPersentDiscount));
