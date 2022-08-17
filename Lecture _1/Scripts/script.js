@@ -16,3 +16,5 @@ console.log(Math.round(sumOfFloorPrices / 100) * 100);
 console.log(sumOfFloorPrices % 2 == 0);
 
 console.log(500 - sumOfPrice);
+
+console.log((+penPrice.toFixed(2) + +diaryPrice.toFixed(2) + +bookPrice.toFixed(2)) / 3)
