@@ -14,3 +14,5 @@ console.log(sumOfFloorPrices);
 console.log(Math.round(sumOfFloorPrices / 100) * 100);
 
 console.log(sumOfFloorPrices % 2 == 0);
+
+console.log(500 - sumOfPrice);
