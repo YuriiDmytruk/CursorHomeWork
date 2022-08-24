@@ -76,7 +76,7 @@ function countRepeatInWord(letter, word){
 }
 
 function convertMoney(inData){
-  inData = String(inData);
+  inData = String(inData).toUpperCase();
   if (!inData) {
     return 0;
   }
@@ -91,5 +91,5 @@ function convertMoney(inData){
   else {return 0;}
 }
 
-console.log(convertMoney("123$"))
+console.log(convertMoney("123f"))
 
