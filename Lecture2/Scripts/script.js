@@ -37,3 +37,5 @@ let html = `
 `;
     
 document.getElementById("info").innerHTML = html;
+
+documet.writeln("<p> Writeline </p>");
