@@ -91,5 +91,16 @@ function convertMoney(inData){
   else {return 0;}
 }
 
-console.log(convertMoney("123f"))
+function createPassword(charNumber = 8){
+  if (!+charNumber) {
+    return 0;
+  }
+  let password = "";
+  for (let i = 0; i < charNumber; i++){
+    password += Math.floor(Math.random() * 10).toString();
+  }
+  return password;
+}
+
+console.log(createPassword())
 
