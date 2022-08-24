@@ -45,3 +45,12 @@ function formateName(name) {
   return letters.join("");
 }
 
+function calculateSalaryWithoutTax(salary, tax){
+  if (!+salary || !+tax) {
+    return 0;
+  }
+  let taxSum = (salary / 100) * tax
+  return salary - taxSum;
+}
+
+console.log(calculateSalaryWithoutTax(1000, 19.5));
