@@ -60,5 +60,36 @@ function getRandomNumberFromNtoM(n, m){
   return Math.floor(Math.random() * (m - n + 1) + n)
 }
 
-console.log(getRandomNumberFromNtoM(1, "10"));
+function countRepeatInWord(letter, word){
+  word = String(word);
+  if (!letter || !word) {
+    return 0;
+  }
+  let letters = word.split('');
+  let count = 0;
+  for (let i = 0; i < letters.length; i++){
+    if (letters[i].toUpperCase() == letter.toUpperCase()){
+      count++;
+    }
+  }
+  return count;
+}
+
+function convertMoney(inData){
+  inData = String(inData);
+  if (!inData) {
+    return 0;
+  }
+  if (inData.includes('$')){
+    number = +inData.replace('$', '');
+    return number * 25;
+  }
+  else if (inData.includes('UAH')){
+    number = +inData.replace('UAH', '');
+    return number / 25;
+  }
+  else {return 0;}
+}
+
+console.log(convertMoney("123$"))
 
