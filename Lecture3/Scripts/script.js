@@ -53,4 +53,12 @@ function calculateSalaryWithoutTax(salary, tax){
   return salary - taxSum;
 }
 
-console.log(calculateSalaryWithoutTax(1000, 19.5));
+function getRandomNumberFromNtoM(n, m){
+  if (!+n || !+m) {
+    return 0;
+  }
+  return Math.floor(Math.random() * (m - n + 1) + n)
+}
+
+console.log(getRandomNumberFromNtoM(1, "10"));
+
