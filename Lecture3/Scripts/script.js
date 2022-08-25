@@ -7,22 +7,25 @@ function maxDigit(inData) {
   return Math.max.apply(null, numbers);
 }
 
-console.log(maxDigit("1283451"));
+function Pow(number, pow) {
+  number = +number;
+  pow = +pow;
 
-
-function getPowOfNumber(number, pow) {
-  if (!+number || !+pow) {
+  if (!number || !pow) {
     return 0;
   }
   if (pow == 0) {
     return 1;
   }
+  debugger;
   let result = number;
   for (let i = 1; i < pow; i++) {
     result *= number;
   }
   return result;
 }
+
+console.log(Pow("3", "2"));
 
 function formateName(name) {
   name = String(name);
