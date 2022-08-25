@@ -29,11 +29,9 @@ for (let i = number_N; i <= number_M; i++) {
 
 console.log(sum);
 
-const html = `
+document.getElementById("info").innerHTML = `
 <p> Number N = ${number_N}</p>
 <p> Number M = ${number_M}</p>
 <p> skip even numbers = ${skipEven}</p>
 <p> sum = ${sum}</p>
 `;
-    
-document.getElementById("info").innerHTML = html;
