@@ -106,7 +106,7 @@ function deleteLetterInWord(letter, word) {
   word = String(word);
   letter = String(letter);
   if (!letter || !word) {
-    return 0;
+    return "";
   }
   for (let i = 0; i < word.length; i++) {
     word = word.replace(letter, "");
@@ -114,6 +114,20 @@ function deleteLetterInWord(letter, word) {
   return word;
 }
 
-// Ctreate 12 and 13 unctions
+function isPalinndrom(word){
+  word = String(word).toUpperCase().replace(/\s/g,'');
+  if (!word) {
+    return false;
+  }
+  let letters = word.split('');
+  let rotatedWord = "";
+  for (let i = word.length - 1; i >= 0; i--){
+    rotatedWord += letters[i];
+  }
+  if (rotatedWord === word) {return true;}
+  else{return false;}
+}
+
+console.log(isPalinndrom("madam"))
 
 
