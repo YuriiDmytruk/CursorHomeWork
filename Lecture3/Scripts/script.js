@@ -1,4 +1,4 @@
-function maxDigit(inData) {
+function getMaxDigit(inData) {
   inData = String(inData);
   if (!+inData) {
     return 0;
@@ -17,7 +17,6 @@ function Pow(number, pow) {
   if (pow == 0) {
     return 1;
   }
-  debugger;
   let result = number;
   for (let i = 1; i < pow; i++) {
     result *= number;
@@ -26,10 +25,11 @@ function Pow(number, pow) {
 }
 
 function formateName(name) {
-  name = String(name);
   if (!name) {
     return "";
   }
+
+  name = String(name);
 
   let letters = name.split("");
 
@@ -59,12 +59,14 @@ function getRandomNumber(from, to) {
   return Math.floor(Math.random() * (to - from + 1) + from);
 }
 
-function countRepeatInWord(letter, word) {
-  word = String(word);
-  letter = String(letter);
+function countLetter(letter, word) {
   if (!letter || !word) {
     return 0;
   }
+
+  word = String(word);
+  letter = String(letter);
+
   let letters = word.split("");
   let count = 0;
   for (let i = 0; i < letters.length; i++) {
@@ -75,11 +77,13 @@ function countRepeatInWord(letter, word) {
   return count;
 }
 
-function convertMoney(inData) {
-  inData = String(inData).toUpperCase();
+function convertCurrency(inData) {
   if (!inData) {
     return 0;
   }
+
+  inData = String(inData).toUpperCase();
+
   if (inData.includes("$")) {
     number = +inData.replace("$", "");
     return number * 25;
@@ -92,6 +96,7 @@ function convertMoney(inData) {
 }
 
 function createPassword(charNumber = 8) {
+  charNumber = +charNumber;
   if (!+charNumber) {
     return 0;
   }
@@ -102,12 +107,14 @@ function createPassword(charNumber = 8) {
   return password;
 }
 
-function deleteLetterInWord(letter, word) {
-  word = String(word);
-  letter = String(letter);
+function deleteLetters(letter, word) {
   if (!letter || !word) {
     return "";
   }
+
+  word = String(word);
+  letter = String(letter);
+
   for (let i = 0; i < word.length; i++) {
     word = word.replace(letter.toLowerCase(), "");
     word = word.replace(letter.toUpperCase(), "");
@@ -115,30 +122,51 @@ function deleteLetterInWord(letter, word) {
   return word;
 }
 
-function isPalinndrom(word){
-  word = String(word).toUpperCase().replace(/\s/g,'');
+function isPalinndrom(word) {
   if (!word) {
     return false;
   }
-  let letters = word.split('');
+  word = String(word).toUpperCase().replace(/\s/g, "");
+
+  let letters = word.split("");
   let rotatedWord = "";
-  for (let i = word.length - 1; i >= 0; i--){
+
+  for (let i = word.length - 1; i >= 0; i--) {
     rotatedWord += letters[i];
   }
-  if (rotatedWord === word) {return true;}
-  else{return false;}
+  if (rotatedWord === word) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
-function deleteDuplicateLetter(word){
-  word = String(word);
+function deleteDuplicateLetter(word) {
   if (!word) {
     return "";
   }
-  for (let i = 0; i < word.length; i++){
-    if(countRepeatInWord(word.charAt(i), word) > 1){
-      word = deleteLetterInWord(word.charAt(i), word);
+  word = String(word);
+  for (let i = 0; i < word.length; i++) {
+    if (countLetter(word.charAt(i), word) > 1) {
+      word = deleteLetters(word.charAt(i), word);
       i = 0;
     }
   }
   return word;
 }
+
+document.getElementById("info").innerHTML = `
+<p> Function 1 = ${getMaxDigit(129314)}</p>
+<p> Function 2 = ${Pow(5, 3)}</p>
+<p> Function 3 = ${formateName("vLAd")}</p>
+<p> Function 4 = ${calculateSalaryWithoutTax(1000, 19.5)}</p>
+<p> Function 5 = ${getRandomNumber(1, 10)}</p>
+<p> Function 6 = ${countLetter("a", "Astalavista")}</p>
+<p> Function 7 = ${convertCurrency("100$")}</p>
+<p> Function 8 = ${convertCurrency("1000uah")}</p>
+<p> Function 9 = ${createPassword(5)}</p>
+<p> Function 10 = ${createPassword()}</p>
+<p> Function 11 = ${deleteLetters('a', "blablabla")}</p>
+<p> Function 12 = ${isPalinndrom("y nesy gyseny")}</p>
+<p> Function 13 = ${deleteDuplicateLetter("Biskvit buv duge nignym")}</p>
+`;
