@@ -25,8 +25,6 @@ function Pow(number, pow) {
   return result;
 }
 
-console.log(Pow("3", "2"));
-
 function formateName(name) {
   name = String(name);
   if (!name) {
@@ -43,22 +41,27 @@ function formateName(name) {
 }
 
 function calculateSalaryWithoutTax(salary, tax) {
-  if (!+salary || !+tax) {
+  salary = +salary;
+  tax = +tax;
+  if (!salary || !tax) {
     return 0;
   }
   let taxSum = (salary / 100) * tax;
   return salary - taxSum;
 }
 
-function getRandomNumberFromNtoM(n, m) {
-  if (!+n || !+m) {
+function getRandomNumber(from, to) {
+  from = +from;
+  to = +from;
+  if (!from || !to) {
     return 0;
   }
-  return Math.floor(Math.random() * (m - n + 1) + n);
+  return Math.floor(Math.random() * (to - from + 1) + from);
 }
 
 function countRepeatInWord(letter, word) {
   word = String(word);
+  letter = String(letter);
   if (!letter || !word) {
     return 0;
   }
