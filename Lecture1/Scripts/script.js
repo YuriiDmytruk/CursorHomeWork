@@ -1,38 +1,38 @@
-let penPrice = 15.678;
-let diaryPrice = 90.2345;
-let bookPrice = 123.965;
+const penPrice = 15.678;
+const diaryPrice = 90.2345;
+const bookPrice = 123.965;
 
-let maxNumber = Math.max(penPrice, diaryPrice, bookPrice);
-let minNumber = Math.min(penPrice, diaryPrice, bookPrice);
+const maxNumber = Math.max(penPrice, diaryPrice, bookPrice);
+const minNumber = Math.min(penPrice, diaryPrice, bookPrice);
 console.log(maxNumber)
 console.log(minNumber)
 
-let sumOfPrice = penPrice + diaryPrice + bookPrice;
+const sumOfPrice = penPrice + diaryPrice + bookPrice;
 console.log(sumOfPrice);
 
-let sumOfFloorPrices = Math.floor(penPrice) + Math.floor(diaryPrice) + Math.floor(bookPrice);
+const sumOfFloorPrices = Math.floor(penPrice) + Math.floor(diaryPrice) + Math.floor(bookPrice);
 console.log(sumOfFloorPrices);
 
-let sumRoundedTo100 = Math.round(sumOfFloorPrices / 100) * 100
+const sumRoundedTo100 = Math.round(sumOfFloorPrices / 100) * 100
 console.log(sumRoundedTo100);
 
-console.log(sumOfFloorPrices % 2 == 0);
+console.log(!sumOfFloorPrices % 2);
 
 console.log(500 - sumOfPrice);
 
-let averagePrice = (+penPrice.toFixed(2) + +diaryPrice.toFixed(2) + +bookPrice.toFixed(2)) / 3;
+const averagePrice = (+penPrice.toFixed(2) + +diaryPrice.toFixed(2) + +bookPrice.toFixed(2)) / 3;
 console.log(averagePrice)
 
-let randomPersentDiscount = Math.round(Math.random() * 100);
+const randomPersentDiscount = Math.round(Math.random() * 100);
 console.log(randomPersentDiscount);
 
-let sumWithDiscount = (sumOfPrice - (sumOfPrice / 100) * randomPersentDiscount).toFixed(2);
+const sumWithDiscount = (sumOfPrice - (sumOfPrice / 100) * randomPersentDiscount).toFixed(2);
 console.log(sumWithDiscount);
 
-let netProfit = (sumOfPrice / 2) - ((sumOfPrice / 100) * randomPersentDiscount);
+const netProfit = (sumOfPrice / 2) - ((sumOfPrice / 100) * randomPersentDiscount);
 console.log(netProfit);
 
-let html = `
+const html = `
 <p> pen price = ${penPrice}</p>
 <p> diary price = ${diaryPrice}</p>
 <p> book price = ${bookPrice}</p>

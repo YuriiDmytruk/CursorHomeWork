@@ -112,4 +112,6 @@ function deleteLetterInWord(letter, word) {
   return word;
 }
 
+// Ctreate 12 and 13 unctions
+
 console.log(deleteLetterInWord("a", "blablabla"));
