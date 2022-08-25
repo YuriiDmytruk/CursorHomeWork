@@ -109,7 +109,8 @@ function deleteLetterInWord(letter, word) {
     return "";
   }
   for (let i = 0; i < word.length; i++) {
-    word = word.replace(letter, "");
+    word = word.replace(letter.toLowerCase(), "");
+    word = word.replace(letter.toUpperCase(), "");
   }
   return word;
 }
@@ -128,6 +129,16 @@ function isPalinndrom(word){
   else{return false;}
 }
 
-console.log(isPalinndrom("madam"))
-
-
+function deleteDuplicateLetter(word){
+  word = String(word);
+  if (!word) {
+    return "";
+  }
+  for (let i = 0; i < word.length; i++){
+    if(countRepeatInWord(word.charAt(i), word) > 1){
+      word = deleteLetterInWord(word.charAt(i), word);
+      i = 0;
+    }
+  }
+  return word;
+}
