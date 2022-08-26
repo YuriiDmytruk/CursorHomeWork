@@ -1,105 +1,79 @@
+// -----------  Utill Functions  -----------
+
+function convertToString(str){
+  str = String(str);
+  return str ? str : '';
+}
+
+function convertToNumber(number){
+  number = +number;
+  return number ? number : 0;
+}
+
+// -----------  Functions  -----------
+
 function getMaxDigit(inData) {
-  inData = String(inData);
-  if (!+inData) {
-    return 0;
-  }
-  const numbers = inData.split("");
-  return Math.max.apply(null, numbers);
+  inData = convertToString(inData);
+
+  return Math.max.apply(null, inData.split(""));
 }
 
 function Pow(number, pow) {
-  number = +number;
-  pow = +pow;
+  number = convertToNumber(number);
+  pow = convertToNumber(pow);
 
-  if (!number || !pow) {
-    return 0;
-  }
-  if (pow == 0) {
-    return 1;
-  }
+  if (pow == 0){return 1;}
+
   let result = number;
-  for (let i = 1; i < pow; i++) {
-    result *= number;
-  }
+  for (let i = 1; i < pow; i++) {result *= number;}
+  
   return result;
 }
 
 function formateName(name) {
-  if (!name) {
-    return "";
-  }
+  name = convertToString(name).toLowerCase();
 
-  name = String(name);
-
-  let letters = name.split("");
-
-  letters[0] = letters[0].toUpperCase();
-  for (let i = 1; i < letters.length; i++) {
-    letters[i] = letters[i].toLowerCase();
-  }
-  return letters.join("");
+  return name.charAt(0).toUpperCase() + name.slice(1);
 }
 
 function calculateSalaryWithoutTax(salary, tax) {
-  salary = +salary;
-  tax = +tax;
-  if (!salary || !tax) {
-    return 0;
-  }
-  let taxSum = (salary / 100) * tax;
-  return salary - taxSum;
+  salary = convertToNumber(salary);
+  tax = convertToNumber(tax);
+
+  return salary - (salary / 100) * tax;
 }
 
 function getRandomNumber(from, to) {
-  from = +from;
-  to = +from;
-  if (!from || !to) {
-    return 0;
-  }
+  from = convertToNumber(from);
+  to = convertToNumber(to);
+
   return Math.floor(Math.random() * (to - from + 1) + from);
 }
 
 function countLetter(letter, word) {
-  if (!letter || !word) {
-    return 0;
-  }
+  word = convertToString(word);
+  letter = convertToString(letter);
 
-  word = String(word);
-  letter = String(letter);
-
-  let letters = word.split("");
-  let count = 0;
-  for (let i = 0; i < letters.length; i++) {
-    if (letters[i].toUpperCase() == letter.toUpperCase()) {
-      count++;
-    }
-  }
-  return count;
+  return word.match(new RegExp(letter, 'gi')).length;
 }
 
 function convertCurrency(inData) {
-  if (!inData) {
-    return 0;
-  }
+  inData = convertToString(inData).toUpperCase();
 
-  inData = String(inData).toUpperCase();
-
-  if (inData.includes("$")) {
-    number = +inData.replace("$", "");
-    return number * 25;
-  } else if (inData.includes("UAH")) {
-    number = +inData.replace("UAH", "");
-    return number / 25;
-  } else {
-    return 0;
+  let number = +inData.replace(/\D/g, '');
+  switch (inData.replace(/[0-9]/g, '')){
+    case "UAH":
+      return number / 25;
+    case "$":
+      return number * 25;
+    default:
+      return 0;
   }
 }
 
 function createPassword(charNumber = 8) {
-  charNumber = +charNumber;
-  if (!+charNumber) {
-    return 0;
-  }
+  charNumber = convertToNumber(charNumber);
+
   let password = "";
   for (let i = 0; i < charNumber; i++) {
     password += Math.floor(Math.random() * 10).toString();
@@ -108,44 +82,26 @@ function createPassword(charNumber = 8) {
 }
 
 function deleteLetters(letter, word) {
-  if (!letter || !word) {
-    return "";
-  }
+  word = convertToString(word);
+  letter = convertToString(letter);
 
-  word = String(word);
-  letter = String(letter);
-
-  for (let i = 0; i < word.length; i++) {
-    word = word.replace(letter.toLowerCase(), "");
-    word = word.replace(letter.toUpperCase(), "");
-  }
-  return word;
+  return word.replace(new RegExp(letter, 'gi'), '');
 }
 
 function isPalinndrom(word) {
-  if (!word) {
-    return false;
-  }
-  word = String(word).toUpperCase().replace(/\s/g, "");
+  word = convertToString(word).toUpperCase().replace(/\s/g, "");
 
-  let letters = word.split("");
-  let rotatedWord = "";
-
-  for (let i = word.length - 1; i >= 0; i--) {
-    rotatedWord += letters[i];
+  for (let i = 0; i < word.length; i++){
+    if(word.charAt(i) != word.charAt(word.length - 1 - i)){
+      return false;
+    }
   }
-  if (rotatedWord === word) {
-    return true;
-  } else {
-    return false;
-  }
+  return true;
 }
 
 function deleteDuplicateLetter(word) {
-  if (!word) {
-    return "";
-  }
-  word = String(word);
+  word = convertToString(word);
+
   for (let i = 0; i < word.length; i++) {
     if (countLetter(word.charAt(i), word) > 1) {
       word = deleteLetters(word.charAt(i), word);
