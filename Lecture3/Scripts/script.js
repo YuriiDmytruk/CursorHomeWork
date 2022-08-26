@@ -22,7 +22,7 @@ function Pow(number, pow) {
   number = convertToNumber(number);
   pow = convertToNumber(pow);
 
-  if (pow == 0){return 1;}
+  if (pow === 0){return 1;}
 
   let result = number;
   for (let i = 1; i < pow; i++) {result *= number;}
