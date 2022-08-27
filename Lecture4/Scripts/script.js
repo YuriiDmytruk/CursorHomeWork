@@ -27,6 +27,6 @@ function getMarks(students, marks){
   return students.map(e => [e, marks[students.indexOf(e)]])
 }
 
-function getRanndomMark(themesPairs, min, max){
+function getRandomMark(themesPairs, min, max){
 return themesPairs.map(e => e.concat(Math.floor(Math.random() * (max - min + 1) + min)));
 }
