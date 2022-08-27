@@ -9,7 +9,7 @@ const marks = [4, 5, 5, 3, 4, 5];
 const pairs = getPairs(students);
 const themesPairs = getThemes(pairs, themes)
 const studentsMarks = getMarks(students, marks);
-const randomMark = getRanndomMark(themesPairs, 1, 5);
+const randomMark = getRandomMark(themesPairs, 1, 5);
 
 console.log(pairs);
 console.log(themesPairs);
