@@ -11,6 +11,9 @@ const themesPairs = getThemes(pairs, themes)
 const studentsMarks = getMarks(students, marks);
 const randomMark = getRanndomMark(themesPairs, 1, 5);
 
+console.log(pairs);
+console.log(themesPairs);
+console.log(studentsMarks);
 console.log(randomMark);
 
 function getPairs(students) {
