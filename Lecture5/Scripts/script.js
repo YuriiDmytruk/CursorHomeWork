@@ -41,5 +41,9 @@ function countPositiveNumbers(...arr){
   return arr.filter(e => e > 0).length
 }
 
+function getDividedByFive(...arr){
+  return arr.filter(e => e % 5 === 0);
+}
 
-console.log(filterEvenNumbers(1, 2, 3, 4, 5, 6));
+
+console.log(getDividedByFive(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2));
