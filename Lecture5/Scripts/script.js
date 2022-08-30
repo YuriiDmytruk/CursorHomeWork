@@ -37,7 +37,9 @@ function filterEvenNumbers(...arr){
   return arr.filter(e => e % 2 != 0);
 }
 
-
+function countPositiveNumbers(...arr){
+  return arr.filter(e => e > 0).length
+}
 
 
 console.log(filterEvenNumbers(1, 2, 3, 4, 5, 6));
