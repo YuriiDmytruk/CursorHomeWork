@@ -33,17 +33,35 @@ function getMedian(...arr) {
   return arr.length % 2 === 0 ? (arr[mid] + arr[mid - 1]) / 2 : arr[mid];
 }
 
-function filterEvenNumbers(...arr){
-  return arr.filter(e => e % 2 != 0);
+function filterEvenNumbers(...arr) {
+  return arr.filter((e) => e % 2 != 0);
 }
 
-function countPositiveNumbers(...arr){
-  return arr.filter(e => e > 0).length
+function countPositiveNumbers(...arr) {
+  return arr.filter((e) => e > 0).length;
 }
 
-function getDividedByFive(...arr){
-  return arr.filter(e => e % 5 === 0);
+function getDividedByFive(...arr) {
+  return arr.filter((e) => e % 5 === 0);
 }
 
+function replaceBadWords(sentece) {
+  const badWords = ["fuck", "shit"];
+  badWords.forEach(e => sentece = sentece.replaceAll(e, '*'.repeat(e.length)))
+  return sentece;
+}
 
-console.log(getDividedByFive(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2));
+function divideByThree(word){
+  return word.length < 3 ? word : word.toLowerCase().replaceAll(' ', '').match(/.{1,3}/g);
+}
+
+function generateCombinations(word){
+  const letters = word.split('');
+  
+}
+
+console.log(
+  generateCombinations("man")
+);
+
+//'#'.repeat(10)
