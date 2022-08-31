@@ -47,21 +47,45 @@ function getDividedByFive(...arr) {
 
 function replaceBadWords(sentece) {
   const badWords = ["fuck", "shit"];
-  badWords.forEach(e => sentece = sentece.replaceAll(e, '*'.repeat(e.length)))
+  badWords.forEach(
+    (e) => (sentece = sentece.replaceAll(e, "*".repeat(e.length)))
+  );
   return sentece;
 }
 
-function divideByThree(word){
-  return word.length < 3 ? word : word.toLowerCase().replaceAll(' ', '').match(/.{1,3}/g);
+function divideByThree(word) {
+  return word.length < 3
+    ? word
+    : word
+        .toLowerCase()
+        .replaceAll(" ", "")
+        .match(/.{1,3}/g);
 }
 
-function generateCombinations(word){
-  const letters = word.split('');
-  
+function generateCombinations(str, index, arr) {
+  if (index >= str.length - 1) {
+    return arr;
+  }
+  let result = [];
+  let word = str.slice(index);
+  for (let j = 0; j < str.length - index; j++) {
+    word = move(word);
+    result.push(str.slice(0, index - str.length) + word);
+  }
+
+  const length = result.length;
+  for (let i = 0; i < length; i++) {
+    result = generateCombinations(result[i], index + 1, result);
+  }
+  return [... new Set (arr.concat(result))];
 }
 
-console.log(
-  generateCombinations("man")
-);
+function move(str) {
+  str = str.split("");
+  str.unshift(str.pop());
+  return str.join("");
+}
+
+console.log(generateCombinations("man", 0, []));
 
 //'#'.repeat(10)
