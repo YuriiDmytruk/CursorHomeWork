@@ -86,6 +86,16 @@ function move(str) {
   return str.join("");
 }
 
-console.log(generateCombinations("man", 0, []));
 
-//'#'.repeat(10)
+document.getElementById("info").innerHTML = `
+<p> 1. Get random array = ${getRandomArray(15, 1, 100)}</p>
+<p> 2. Get moda= ${getModa(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2)}</p>
+<p> 3. Get average = ${getAverage(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2)}</p>
+<p> 4. Get median = ${getMedian(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2)}</p>
+<p> 5. Filter even numbers = ${filterEvenNumbers(1, 2, 3, 4, 5, 6)}</p>
+<p> 6. Count positive numbers = ${countPositiveNumbers(1, -2, 3, -4, -5, 6)}</p>
+<p> 7. Get divided by five = ${getDividedByFive(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2)}</p>
+<p> 8. Replace bad words = ${replaceBadWords("Are you fucking kidding?")}</p>
+<p> 9. Divide by three = ${divideByThree("Commander")}</p>
+<p> 10. Generate combinations = ${generateCombinations("man", 0, []).join(' , ')}</p>
+`;
