@@ -5,18 +5,11 @@ function getRandomArray(lenght, min, max) {
 }
 
 function getModa(...arr) {
-  arr = arr.filter((e) => Number.isInteger(e));
-  let moda = arr[0],
-    maxCount = 0,
-    count = 0;
-  for (let i = 0; i < arr.length; i++) {
-    count = arr.filter((e) => e === arr[i]).length;
-    if (maxCount < count) {
-      moda = arr[i];
-      maxCount = count;
-    }
-  }
-  return moda;
+  const result = {};
+  arr.forEach(e => e in result ? result[e] += 1 : result[e] = 1);
+  return Object.entries(result)
+    .filter(e => e[1] === Math.max.apply(null, Object.values(result)))
+    .map(e => e[0]);
 }
 
 function getAverage(...arr) {
@@ -89,7 +82,7 @@ function move(str) {
 
 document.getElementById("info").innerHTML = `
 <p> 1. Get random array = ${getRandomArray(15, 1, 100)}</p>
-<p> 2. Get moda= ${getModa(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2)}</p>
+<p> 2. Get moda= ${getModa(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 55, 55, 23, 2, 56, 3, 2)}</p>
 <p> 3. Get average = ${getAverage(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2)}</p>
 <p> 4. Get median = ${getMedian(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2)}</p>
 <p> 5. Filter even numbers = ${filterEvenNumbers(1, 2, 3, 4, 5, 6)}</p>
