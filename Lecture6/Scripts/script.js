@@ -1,9 +1,5 @@
 function getSubjects(student) {
-  let result = [];
-  for (subject in student.subjects) {
-    result.push((subject.charAt(0).toUpperCase() + subject.slice(1)).replaceAll('_', ' '));
-  }
-  return result;
+  return Object.keys(student.subjects).map(e => (e.charAt(0).toUpperCase() + e.slice(1)).replaceAll('_', ' '))
 }
 
 function getAverageMark(student) {
@@ -16,10 +12,11 @@ function getAverageMark(student) {
 }
 
 function getStudentInfo(student) {
-  let result = Object.entries(student);
-  result.pop();
-  result.push(["averageMark", getAverageMark(student)]);
-  return result;
+  return {
+    course : student.course,
+    name : student.name,
+    averageMark : getAverageMark(student),
+  };
 }
 
 function getStudentsNames(students) {
