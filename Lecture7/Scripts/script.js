@@ -16,9 +16,29 @@ function getTotalTaxes(){
   return this.tax * this.middleSalary * this.vacancies;
 }
 
+function getMySalary(){
+  const max = 2000, min = 1500;
+  const salary = Math.round(Math.random() * (max - min) + min)  ;
+  console.log({
+    salary: salary,
+    taxes: this.tax,
+    profit: salary - this.tax,
+  })
+}
+
 console.log(getMyTaxes.call(ukraine, 1000));
 console.log(getMiddleTaxes.call(latvia));
 console.log(getTotalTaxes.call(litva));
+
+
+const time = 10000;
+
+console.log(`Wait ${time / 1000} seconds for the 4th function to work`)
+
+let bindedFunc = getMySalary.bind(ukraine);
+const intervalID = window.setInterval(bindedFunc, time);
+
+
 
 
 
