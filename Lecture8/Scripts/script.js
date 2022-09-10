@@ -49,6 +49,10 @@ class BudgetStudent extends Student {
     super(university, course, fullName, marks);
     this.scholarShip = scholarShip;
   }
+
+  getScholarship(){
+    return `Студент ${this.fullName} отримав ${this.scholarShip} грн. стипендії`;
+  }
 }
 
 const student = new Student(
