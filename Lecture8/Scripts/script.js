@@ -10,14 +10,18 @@ class Student {
     return `Студент ${this.course}го курсу ${this.university}, ${this.fullName}`;
   }
 
-  get getMarks(){
-    return this.marks;
+  get marks(){
+    return this._marks;
   }
 
-  set setMarks(value){
-    this.marks = value;
+  set marks(value){
+    this._marks = Array.isArray(this.marks) ? this.marks : [];
+    this._marks.push(value);
+    this._marks = this._marks.flat(Infinity);
+    return this._marks;
   }
 }
 
 const student = new Student("Вищої Школи Психотерапії м.Одеса", 1, "Остап Родоманський Бендер", [1,2,3,4,5]);
-console.log(student.marks);
+
+student.marks = 5;
