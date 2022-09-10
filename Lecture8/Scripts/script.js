@@ -49,7 +49,7 @@ class BudgetStudent extends Student {
     super(university, course, fullName, marks);
     this.scholarShip = scholarShip;
 
-    window.setInterval(this.getScholarship.bind(this), 1000);
+    window.setInterval(this.getScholarship.bind(this), 30000);
   }
 
   getScholarship() {
