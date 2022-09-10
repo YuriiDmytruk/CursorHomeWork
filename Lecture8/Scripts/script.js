@@ -48,16 +48,33 @@ class BudgetStudent extends Student {
   constructor(university, course, fullName, marks, scholarShip) {
     super(university, course, fullName, marks);
     this.scholarShip = scholarShip;
+
+    window.setInterval(this.getScholarship.bind(this), 1000);
   }
 
-  getScholarship(){
-    return `Студент ${this.fullName} отримав ${this.scholarShip} грн. стипендії`;
+  getScholarship() {
+    if (!this.excluded && this.getAverageMark() >= 4 ) {
+      console.log(`Студент ${this.fullName} отримав ${this.scholarShip} грн. стипендії`);
+    }
+    return null;
   }
 }
 
 const student = new Student(
   "Вищої Школи Психотерапії м.Одеса",
   1,
-  "Остап Родоманський Бендер",
+  "Остап Родоманський",
   [5, 4, 4, 5, 5]
 );
+
+const budgetStudent = new BudgetStudent(
+  "Вищої Школи Психотерапії м.Одеса",
+  1,
+  "Роман Бендер",
+  [4, 4, 5, 4, 4],
+  1400
+);
+
+console.log(student.getInfo())
+
+console.log(student.getAverageMark())
