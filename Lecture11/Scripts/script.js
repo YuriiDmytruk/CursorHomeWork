@@ -32,8 +32,6 @@ function onClickSetActive(e) {
 
 function setActive(e) {
   document.getElementById(e.key.toUpperCase()).className = "active";
-  console.log(e);
-  console.log(e.key);
   audioList[
     audioBindList.find(
       (el) => el.elementKey.toUpperCase() == e.key.toUpperCase()
