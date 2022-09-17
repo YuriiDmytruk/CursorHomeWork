@@ -2,21 +2,47 @@ addEventListener("keypress", onKeyPressed);
 let createdKeys = [];
 
 function onKeyPressed(e) {
-  disableKeys(createdKeys);
-  //create activated key
-
-  console.log({ e });
-  createdKeys.push(e);
-  console.log(e.target.classList);
+  if (checkIfUnique(e, createdKeys)) {
+    disableKeys(createdKeys);
+    createKey(e);
+    createdKeys.push(e);
+  } else {
+    setActive(e, createdKeys);
+  }
 }
 
-function disableKeys(createdKeys) {
-  createdKeys.forEach((element) => {
-    element.target.classList.splice(element.target.classList.indexOf("enabled"), 1);
-    element.target.classList.push("disabled")
-  });
+function setActive(e, createdKeys) {
+  for (let i = 0; i < createdKeys.length; i++) {
+    if (e.key.toUpperCase() == createdKeys[i].key.toUpperCase()) {
+      console.log(createdKeys[i]);
+    }
+  }
 }
 
-function createKey() {
+function checkIfUnique(e, createdKeys) {
+  for (let i = 0; i < createdKeys.length; i++) {
+    if (e.key.toUpperCase() == createdKeys[i].key.toUpperCase()) {
+      return false;
+    }
+  }
+  return true;
+}
 
+function createKey(e) {
+  const wrapper = document.getElementById("wrapper");
+  const key = document.createElement("div");
+  key.className = "active";
+  key.id = e.key.toUpperCase();
+  key.textContent = e.key.toUpperCase();
+  wrapper.appendChild(key);
+}
+
+function disableKeys() {
+  const elementsWithActiveClass = document
+    .getElementById("wrapper")
+    .getElementsByClassName("active");
+
+  for (let i = 0; i < elementsWithActiveClass.length; i++) {
+    elementsWithActiveClass[i].className = "passive";
+  }
 }

@@ -1,3 +1,7 @@
+body {
+    background-color: beige;
+}
+
 div {
     display: flex;
     display: -ms-flexbox;
@@ -9,30 +13,31 @@ div {
     -moz-flex-wrap: wrap;
     -o-flex-wrap: wrap;
     -webkit-flex-wrap: wrap;
-    text-align: center;
-    vertical-align: middle;
-    font-size: xx-large;
-    }
-    div>div {
+    font-size: 80px;
+}
+
+div>div {
     width: 100px;
     height: 100px;
     width: -ms-flex;
     width: -moz-flex;
     width: -o-flex;
     width: -webkit-flex;
-    margin: 5px;
-    
-    
-    
-    }
+    margin: 9px;
 
-.enabled{
-    background-color: red;
+    color: rgb(78, 18, 66);
 }
 
-.disabled{
-    background-color: #2e2c36;
-    border-width: 4px;
-    border: #d9ec06;
-    
+.active {
+    background-color: #fc29fc;
+
+    box-shadow: rgba(240, 46, 170, 0.4) 5px 5px,
+        rgba(240, 46, 170, 0.3) 10px 10px,
+        rgba(240, 46, 170, 0.2) 15px 15px,
+        rgba(240, 46, 170, 0.1) 20px 20px,
+        rgba(240, 46, 170, 0.05) 25px 25px;
+}
+
+.passive {
+    background-color: #ff8aff;
 }
