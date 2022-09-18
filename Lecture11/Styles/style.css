@@ -1,43 +1,76 @@
 body {
-    background-color: beige;
+    background-color: #92A8D1;
 }
 
 div {
     display: flex;
-    display: -ms-flexbox;
-    display: -moz-flexbox;
-    display: -o-flexbox;
-    display: -webkit-flexbox;
     flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    -moz-flex-wrap: wrap;
-    -o-flex-wrap: wrap;
-    -webkit-flex-wrap: wrap;
     font-size: 80px;
+    justify-content: center;
+    align-items: center;
 }
 
 div>div {
+
     width: 100px;
     height: 100px;
-    width: -ms-flex;
-    width: -moz-flex;
-    width: -o-flex;
-    width: -webkit-flex;
     margin: 9px;
+    border-radius: 10px;
 
-    color: rgb(78, 18, 66);
+    color: white;
 }
 
 .active {
-    background-color: #fc29fc;
+    cursor: default;
 
-    box-shadow: rgba(240, 46, 170, 0.4) 5px 5px,
-        rgba(240, 46, 170, 0.3) 10px 10px,
-        rgba(240, 46, 170, 0.2) 15px 15px,
-        rgba(240, 46, 170, 0.1) 20px 20px,
-        rgba(240, 46, 170, 0.05) 25px 25px;
+    background: linear-gradient(90deg, rgba(52, 86, 139, 1) 0%, rgba(51, 77, 157, 1) 8%, rgba(48, 38, 235, 1) 41%, rgba(47, 29, 253, 1) 51%, rgba(48, 40, 230, 1) 60%, rgba(51, 76, 159, 1) 92%, rgba(52, 86, 139, 1) 100%);
+    animation: slidebg 5s linear infinite;
 }
 
 .passive {
-    background-color: #ff8aff;
+    background-color: #34568B;
+    cursor: pointer;
+}
+
+.text {
+    width: 100%;
+
+    text-align: center;
+}
+
+
+@keyframes slidebg {
+    to {
+        background-position: 20vw;
+    }
+}
+
+.box div {
+    position: relative;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+/* ---------------------- Style 1 -------------------------- */
+
+.box div::before,
+.box div:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0%;
+    left: 0%;
+    background-color: #34568B;
+    opacity: 1;
+    transition: all 0.5s cubic-bezier(0.075, 0.81, 0.165, 1);
+    border-radius: 10px;
+    z-index: -1;
+}
+
+/* On hover the sudo before and after elements are scaled 1.5 times with opacity changed from 1 to 0 */
+.box div:hover:before,
+.box div:hover:after {
+    opacity: 0;
+    transform: scale(1.5);
 }

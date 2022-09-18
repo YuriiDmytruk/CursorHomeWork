@@ -12,7 +12,6 @@ function onKeyPressed(e) {
   if (checkIfUnique(e, createdKeys)) {
     disableKeys(createdKeys);
     createKey(e);
-    createdKeys.push(e);
   } else {
     disableKeys(createdKeys);
     setActive(e, createdKeys);
@@ -20,7 +19,7 @@ function onKeyPressed(e) {
 }
 
 function onClickSetActive(e) {
-  if (e.target.className === "passive") {
+  if (e.target.className.includes("passive")) {
     disableKeys(createdKeys);
     e.target.className = "active";
     audioList[
@@ -49,15 +48,19 @@ function checkIfUnique(e, createdKeys) {
 }
 
 function createKey(e) {
+  if (e.key == "Enter") {
+    return;
+  }
   const wrapper = document.getElementById("wrapper");
   const key = document.createElement("div");
-  key.className = "active";
-  key.id = e.key.toUpperCase();
   key.textContent = e.key.toUpperCase();
+  key.className = "active bar box";
+  key.id = e.key.toUpperCase();
   wrapper.appendChild(key);
   const index = getAudioListndex();
   audioBindList.push(new AudioBind(e.key.toUpperCase(), index));
   audioList[index].play();
+  createdKeys.push(e);
 }
 
 function disableKeys() {
@@ -66,7 +69,7 @@ function disableKeys() {
     .getElementsByClassName("active");
 
   for (let i = 0; i < elementsWithActiveClass.length; i++) {
-    elementsWithActiveClass[i].className = "passive";
+    elementsWithActiveClass[i].className = "passive bar box";
   }
 }
 
