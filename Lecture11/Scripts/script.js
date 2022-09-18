@@ -1,9 +1,15 @@
+const CONSONANT_LETTERS = "qwrtpsdfghjklzxcvbnmйцкнгшщзхфвпрлджчсмтьб"
+  .toUpperCase()
+  .split("");
+const VOWEL_LETTERS = "eyuioaуеїіаоєяю".toUpperCase().split("");
+const NUMBERS = "0123456789".toUpperCase().split("");
+const PUNCTUATION = `!@#$%^&*()_+-=[{]}:;'"<,>.?/`.toUpperCase().split("");
+
+const MUSIC_LIST = ["1", "2", "3", "4"];
+const AUDIO_LIST = addAudio(MUSIC_LIST);
+
 let createdKeys = [];
 let audioBindList = [];
-let audioListIndex = -1;
-
-const musicList = ["1", "2", "3"];
-const audioList = addAudio(musicList);
 
 addEventListener("keypress", onKeyPressed);
 addEventListener("click", onClickSetActive);
@@ -22,7 +28,7 @@ function onClickSetActive(e) {
   if (e.target.className.includes("passive")) {
     disableKeys(createdKeys);
     e.target.className = "active";
-    audioList[
+    AUDIO_LIST[
       audioBindList.find((el) => el.elementKey.toUpperCase() == e.target.id)
         .audioListIndex
     ].play();
@@ -31,7 +37,7 @@ function onClickSetActive(e) {
 
 function setActive(e) {
   document.getElementById(e.key.toUpperCase()).className = "active";
-  audioList[
+  AUDIO_LIST[
     audioBindList.find(
       (el) => el.elementKey.toUpperCase() == e.key.toUpperCase()
     ).audioListIndex
@@ -57,9 +63,9 @@ function createKey(e) {
   key.className = "active bar box";
   key.id = e.key.toUpperCase();
   wrapper.appendChild(key);
-  const index = getAudioListndex();
+  const index = getSymbolType(e.key.toUpperCase());
   audioBindList.push(new AudioBind(e.key.toUpperCase(), index));
-  audioList[index].play();
+  AUDIO_LIST[index].play();
   createdKeys.push(e);
 }
 
@@ -81,12 +87,27 @@ function addAudio(musicList) {
   return result;
 }
 
-function getAudioListndex() {
-  audioListIndex += 1;
-  if (audioListIndex === audioList.length) {
-    audioListIndex = 0;
+function getSymbolType(symbol) {
+  for (let i = 0; i < CONSONANT_LETTERS.length; i++) {
+    if (symbol == CONSONANT_LETTERS[i]) {
+      return "0";
+    }
   }
-  return audioListIndex;
+  for (let i = 0; i < VOWEL_LETTERS.length; i++) {
+    if (symbol == VOWEL_LETTERS[i]) {
+      return "1";
+    }
+  }
+  for (let i = 0; i < NUMBERS.length; i++) {
+    if (symbol == NUMBERS[i]) {
+      return "3";
+    }
+  }
+  for (let i = 0; i < PUNCTUATION.length; i++) {
+    if (symbol == PUNCTUATION[i]) {
+      return "2";
+    }
+  }
 }
 
 class AudioBind {
