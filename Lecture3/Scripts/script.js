@@ -18,16 +18,24 @@ function getMaxDigit(inData) {
   return Math.max.apply(null, inData.split(""));
 }
 
-function Pow(number, pow) {
-  number = convertToNumber(number);
-  pow = convertToNumber(pow);
-
-  if (pow === 0){return 1;}
-
-  let result = number;
-  for (let i = 1; i < pow; i++) {result *= number;}
+function Pow(base, exponent) {
+  base = convertToNumber(base);
+  exponent = convertToNumber(exponent);
+  let exponentPositive = true
+  if (exponent < 0){
+    exponentPositive = false;
+    exponent = exponent * (-1);
+  }
   
-  return result;
+  let result = 1;
+	for(let i=1; i<=exponent; i++) {
+		result = result * base;
+	}
+
+  if(exponentPositive){
+    return result;
+  }
+	return 1 / result;
 }
 
 function formateName(name) {
@@ -113,7 +121,7 @@ function deleteDuplicateLetter(word) {
 
 document.getElementById("info").innerHTML = `
 <p> Function 1 = ${getMaxDigit(129314)}</p>
-<p> Function 2 = ${Pow(5, 3)}</p>
+<p> Function 2 = ${Pow(5, -3)}</p>
 <p> Function 3 = ${formateName("vLAd")}</p>
 <p> Function 4 = ${calculateSalaryWithoutTax(1000, 19.5)}</p>
 <p> Function 5 = ${getRandomNumber(1, 10)}</p>
