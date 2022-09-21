@@ -6,10 +6,12 @@ function getRandomArray(lenght, min, max) {
 
 function getModa(...arr) {
   const result = {};
-  arr.forEach(e => e in result ? result[e] += 1 : result[e] = 1);
+  arr.forEach((e) =>
+    Number.isInteger(e) ? (e in result ? (result[e] += 1) : (result[e] = 1)) : 1
+  );
   return Object.entries(result)
-    .filter(e => e[1] === Math.max.apply(null, Object.values(result)))
-    .map(e => e[0]);
+    .filter((e) => e[1] === Math.max.apply(null, Object.values(result)))
+    .map((e) => e[0]);
 }
 
 function getAverage(...arr) {
@@ -27,19 +29,19 @@ function getMedian(...arr) {
 }
 
 function filterEvenNumbers(...arr) {
-  return arr.filter((e) => e % 2 != 0);
+  return arr.filter((e) => Number.isInteger(e)).filter((e) => e % 2 != 0);
 }
 
 function countPositiveNumbers(...arr) {
-  return arr.filter((e) => e > 0).length;
+  return arr.filter((e) => Number.isInteger(e)).filter((e) => e > 0).length;
 }
 
 function getDividedByFive(...arr) {
   return arr.filter((e) => e % 5 === 0);
 }
 
-function replaceBadWords(sentece) {
-  const badWords = ["fuck", "shit"];
+function replaceBadWords(sentece, ...arr) {
+  const badWords = ["fuck", "shit"].concat(arr.flat(Infinity));
   badWords.forEach(
     (e) => (sentece = sentece.replaceAll(e, "*".repeat(e.length)))
   );
@@ -55,9 +57,12 @@ function divideByThree(word) {
         .match(/.{1,3}/g);
 }
 
-function generateCombinations(str, index, arr) {
+function generateCombinations(str, index = 0, arr = []) {
+  if(!str){
+    return [...new Set(arr)];
+  }
   if (index >= str.length - 1) {
-    return arr;
+    return [...new Set(arr)];
   }
   let result = [];
   let word = str.slice(index);
@@ -65,12 +70,11 @@ function generateCombinations(str, index, arr) {
     word = move(word);
     result.push(str.slice(0, index - str.length) + word);
   }
-
   const length = result.length;
   for (let i = 0; i < length; i++) {
     result = generateCombinations(result[i], index + 1, result);
   }
-  return [... new Set (arr.concat(result))];
+  return [...new Set(arr.concat(result))];
 }
 
 function move(str) {
@@ -79,16 +83,81 @@ function move(str) {
   return str.join("");
 }
 
-
 document.getElementById("info").innerHTML = `
 <p> 1. Get random array = ${getRandomArray(15, 1, 100)}</p>
-<p> 2. Get moda= ${getModa(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 55, 55, 23, 2, 56, 3, 2)}</p>
-<p> 3. Get average = ${getAverage(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2)}</p>
-<p> 4. Get median = ${getMedian(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2)}</p>
+<p> 2. Get moda= ${getModa(
+  6,
+  2,
+  55,
+  11,
+  78,
+  2,
+  55,
+  77,
+  57,
+  87,
+  55,
+  55,
+  23,
+  2,
+  56,
+  3,
+  2
+)}</p>
+<p> 3. Get average = ${getAverage(
+  6,
+  2,
+  55,
+  11,
+  78,
+  2,
+  55,
+  77,
+  57,
+  87,
+  23,
+  2,
+  56,
+  3,
+  2
+)}</p>
+<p> 4. Get median = ${getMedian(
+  6,
+  2,
+  55,
+  11,
+  78,
+  2,
+  55,
+  77,
+  57,
+  87,
+  23,
+  2,
+  56,
+  3,
+  2
+)}</p>
 <p> 5. Filter even numbers = ${filterEvenNumbers(1, 2, 3, 4, 5, 6)}</p>
 <p> 6. Count positive numbers = ${countPositiveNumbers(1, -2, 3, -4, -5, 6)}</p>
-<p> 7. Get divided by five = ${getDividedByFive(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2)}</p>
+<p> 7. Get divided by five = ${getDividedByFive(
+  6,
+  2,
+  55,
+  11,
+  78,
+  2,
+  55,
+  77,
+  57,
+  87,
+  23,
+  2,
+  56,
+  3,
+  2
+)}</p>
 <p> 8. Replace bad words = ${replaceBadWords("Are you fucking kidding?")}</p>
 <p> 9. Divide by three = ${divideByThree("Commander")}</p>
-<p> 10. Generate combinations = ${generateCombinations("man", 0, []).join(' , ')}</p>
+<p> 10. Generate combinations = ${generateCombinations("man").join(" , ")}</p>
 `;
