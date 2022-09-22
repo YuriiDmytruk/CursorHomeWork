@@ -1,10 +1,3 @@
-const CONSONANT_LETTERS = "qwrtpsdfghjklzxcvbnmйцкнгшщзхфвпрлджчсмтьб"
-  .toUpperCase()
-  .split("");
-const VOWEL_LETTERS = "eyuioaуеїіаоєяю".toUpperCase().split("");
-const NUMBERS = "0123456789".toUpperCase().split("");
-const PUNCTUATION = `!@#$%^&*()_+-=[{]}:;'"<,>.?/`.toUpperCase().split("");
-
 const MUSIC_LIST = ["1", "2", "3", "4"];
 const AUDIO_LIST = addAudio(MUSIC_LIST);
 
@@ -15,11 +8,10 @@ addEventListener("keypress", onKeyPressed);
 addEventListener("click", onClickSetActive);
 
 function onKeyPressed(e) {
+  disableKeys(createdKeys);
   if (checkIfUnique(e, createdKeys)) {
-    disableKeys(createdKeys);
     createKey(e);
   } else {
-    disableKeys(createdKeys);
     setActive(e, createdKeys);
   }
 }
@@ -27,26 +19,29 @@ function onKeyPressed(e) {
 function onClickSetActive(e) {
   if (e.target.className.includes("passive")) {
     disableKeys(createdKeys);
-    e.target.className = "active";
-    AUDIO_LIST[
-      audioBindList.find((el) => el.elementKey.toUpperCase() == e.target.id)
-        .audioListIndex
-    ].play();
+    e.target.classList.add("active");
   }
+  playMusic(e.target.id);
 }
 
 function setActive(e) {
-  document.getElementById(e.key.toUpperCase()).className = "active";
-  AUDIO_LIST[
+  document.getElementById(e.charCode).classList.remove("passive");
+  document.getElementById(e.charCode).classList.add("active");
+
+  playMusic(e.charCode);
+}
+
+function playMusic(charCode) {
+   AUDIO_LIST[
     audioBindList.find(
-      (el) => el.elementKey.toUpperCase() == e.key.toUpperCase()
+      (el) => el.elementKey == charCode
     ).audioListIndex
   ].play();
 }
 
 function checkIfUnique(e, createdKeys) {
   for (let i = 0; i < createdKeys.length; i++) {
-    if (e.key.toUpperCase() == createdKeys[i].key.toUpperCase()) {
+    if (e.charCode == createdKeys[i].charCode) {
       return false;
     }
   }
@@ -59,13 +54,14 @@ function createKey(e) {
   }
   const wrapper = document.getElementById("wrapper");
   const key = document.createElement("div");
-  key.textContent = e.key.toUpperCase();
+
+  key.textContent = String.fromCharCode(e.charCode);
   key.className = "active bar box";
-  key.id = e.key.toUpperCase();
+  key.id = e.charCode;
   wrapper.appendChild(key);
-  const index = getSymbolType(e.key.toUpperCase());
-  audioBindList.push(new AudioBind(e.key.toUpperCase(), index));
-  AUDIO_LIST[index].play();
+
+  audioBindList.push(new AudioBind(e.charCode, getSymbolType(e.charCode)));
+  playMusic(e.charCode);
   createdKeys.push(e);
 }
 
@@ -75,7 +71,8 @@ function disableKeys() {
     .getElementsByClassName("active");
 
   for (let i = 0; i < elementsWithActiveClass.length; i++) {
-    elementsWithActiveClass[i].className = "passive bar box";
+    elementsWithActiveClass[i].classList.add("passive");
+    elementsWithActiveClass[i].classList.remove("active");
   }
 }
 
@@ -88,25 +85,21 @@ function addAudio(musicList) {
 }
 
 function getSymbolType(symbol) {
-  for (let i = 0; i < CONSONANT_LETTERS.length; i++) {
-    if (symbol == CONSONANT_LETTERS[i]) {
-      return "0";
-    }
-  }
-  for (let i = 0; i < VOWEL_LETTERS.length; i++) {
-    if (symbol == VOWEL_LETTERS[i]) {
+  const VOWEL_LETTERS = "eyuioaуеїіаоєяю".toUpperCase().split("");
+
+  symbol = String.fromCharCode(symbol).toUpperCase();
+
+  if (symbol.toUpperCase() !== symbol.toLowerCase()){
+    if(VOWEL_LETTERS.indexOf(symbol) !== -1){
       return "1";
     }
+    return "0";
   }
-  for (let i = 0; i < NUMBERS.length; i++) {
-    if (symbol == NUMBERS[i]) {
+  else{
+    if(/^[0-9]$/.test(symbol)){
       return "3";
     }
-  }
-  for (let i = 0; i < PUNCTUATION.length; i++) {
-    if (symbol == PUNCTUATION[i]) {
-      return "2";
-    }
+    return "2";
   }
 }
 
