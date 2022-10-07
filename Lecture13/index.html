@@ -1,23 +1,34 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>HomeWork</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="./Styles/navBarStyle.css" />
+    <link rel="stylesheet" href="./Styles/style.css" />
+    <link rel="stylesheet" href="./Styles/buttonDesign.css" />
+  </head>
 
-<head>
-  <title>HomeWork</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <link rel="stylesheet" href="./Styles/style.css">
-</head>
+  <body>
+    <link
+      href="https://fonts.googleapis.com/css?family=Arvo&display=swap"
+      rel="stylesheet"
+    />
 
-<body>
-  <h1>Lecture #13 - Work with the server</h1>
-  <button onclick="GetFilms()">Get Films</button>
-  <button onclick="GetPlanets()">Get Planets</button>
-  <button onclick="NextPlanets()">Next</button>
-  <button onclick="PrevPlanets()">Prev</button>
-  <select name="Films" id="filmCkeck" onchange="SelectChanged()">
+    <nav role="navigation" class="primary-navigation">
+      <ul>
+        <li onclick="GetPlanets()"><a>Planets</a></li>
+        <li>
+          <a>Films &dtrif;</a>
+          <ul id="filmCkeck" class="dropdown"></ul>
+        </li>
+      </ul>
+    </nav>
 
-  </select>
+    <div class="box" id="wrapper">
+    </div>
 
-   <script src="Scripts/script.js"></script>
-</body>
+    <div id="footer" class="footer"></div>
 
+    <script src="Scripts/script.js"></script>
+  </body>
 </html>

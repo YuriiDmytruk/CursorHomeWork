@@ -1,1 +1,31 @@
 body.waiting * { cursor: wait; }
+
+body {
+    background-color: #92A8D1;
+}
+
+div {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+div>div {
+    background-color: #34568B;
+    width: 20%;
+    height: 300px;
+    margin: 9px;
+    border-radius: 10px;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 5px;
+ }

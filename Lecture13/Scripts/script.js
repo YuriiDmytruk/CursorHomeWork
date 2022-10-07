@@ -1,10 +1,16 @@
+GetFilms();
+
+CreateNextPrev();
+
+DeleteNextPrev();
+
 async function GetFilms() {
-  document.body.classList.add('waiting');
+  document.body.classList.add("waiting");
 
   const request = await fetch("https://swapi.dev/api/films/");
   const response = await request.json();
 
-  document.body.classList.remove('waiting');
+  document.body.classList.remove("waiting");
 
   localStorage.setItem("films", JSON.stringify(response.results));
   AddOptionsToSelect();
@@ -15,17 +21,20 @@ function AddOptionsToSelect() {
 
   films.sort((a, b) => (a.episode_id > b.episode_id ? 1 : -1));
 
-  const select = document.getElementById("filmCkeck");
   films.forEach((element) => {
-    let opt = document.createElement("option");
-    opt.value = element.episode_id;
-    opt.innerHTML = element.episode_id + ". " + element.title;
-    select.appendChild(opt);
-  });
-}
+    let li = document.createElement("li");
+    let a = document.createElement("a");
+    a.innerHTML = element.episode_id + ". " + element.title;
+    li.id = element.episode_id;
 
-function SelectChanged() {
-  GetCharacters(document.getElementById("filmCkeck").value);
+    li.onclick = function () {
+      DeleteNextPrev();
+      GetCharacters(this.id);
+    };
+
+    li.appendChild(a);
+    document.getElementById("filmCkeck").appendChild(li);
+  });
 }
 
 async function GetCharacters(id) {
@@ -34,62 +43,115 @@ async function GetCharacters(id) {
   });
   let characters = [];
 
-  document.body.classList.add('waiting');
+  document.body.classList.add("waiting");
 
-  for(let i = 0; i < film.characters.length; i++){
+  for (let i = 0; i < film.characters.length; i++) {
     const request = await fetch(film.characters[i]);
-    const character = await request.json()
-    characters.push(new Character(character.name, character.birth_year, character.gender));
+    const character = await request.json();
+    characters.push(
+      new Character(character.name, character.birth_year, character.gender)
+    );
   }
 
-  document.body.classList.remove('waiting');
+  document.body.classList.remove("waiting");
   ShowCharacters(characters);
-  
 }
 
-async function GetPlanets(url = "https://swapi.dev/api/planets"){
-  if(!url){
+async function GetPlanets(url = "https://swapi.dev/api/planets") {
+  if (!url) {
     url = "https://swapi.dev/api/planets";
   }
+  CreateNextPrev();
 
-  document.body.classList.add('waiting');
+  document.body.classList.add("waiting");
 
   const request = await fetch(url);
   const response = await request.json();
 
-  document.body.classList.remove('waiting');
+  document.body.classList.remove("waiting");
 
   localStorage.setItem("currentPlanetsList", JSON.stringify(response));
 
-  CreatePlanetsList(response)
+  CreatePlanetsList(response);
 }
 
-function NextPlanets(){
-  GetPlanets(JSON.parse(localStorage.getItem("currentPlanetsList")).next)
+function NextPlanets() {
+  GetPlanets(JSON.parse(localStorage.getItem("currentPlanetsList")).next);
 }
 
-function PrevPlanets(){
-  GetPlanets(JSON.parse(localStorage.getItem("currentPlanetsList")).previous)
+function PrevPlanets() {
+  GetPlanets(JSON.parse(localStorage.getItem("currentPlanetsList")).previous);
 }
 
-function CreatePlanetsList(response){
+function CreatePlanetsList(response) {
   let planets = [];
-  for(let i = 0; i < response.results.length; i++){
-    planets.push(new Planet(
-      response.results[i].name,
-      response.results[i].climate,
-      response.results[i].terrain,
-      response.results[i].population));
+  for (let i = 0; i < response.results.length; i++) {
+    planets.push(
+      new Planet(
+        response.results[i].name,
+        response.results[i].climate,
+        response.results[i].terrain,
+        response.results[i].population
+      )
+    );
   }
-  ShowPlanets(planets)
+  ShowPlanets(planets);
 }
 
-function ShowPlanets(planets){
-  console.log(planets);
+function ShowPlanets(planets) {
+  const wrapper = document.getElementById("wrapper");
+  wrapper.textContent = '';
+
+  planets.forEach((element) => {
+    let box = document.createElement("div");
+    box.classList.add("box");
+    box.innerHTML = `Name: ${element.name} \n 
+      Climate: ${element.birth_year} \n
+      Terrain: ${element.birth_year} \n
+      Population: ${element.gender} \n`;
+    wrapper.appendChild(box);
+  });
 }
 
-function ShowCharacters(characters){
-  console.log(characters)
+function ShowCharacters(characters) {
+  const wrapper = document.getElementById("wrapper");
+  wrapper.textContent = '';
+
+  characters.forEach((element) => {
+    let box = document.createElement("div");
+    box.classList.add("box");
+    box.innerHTML = `Name: ${element.name} \n 
+      Birth day: ${element.birth_year} \n
+      Gender: ${element.gender} \n`;
+    wrapper.appendChild(box);
+  });
+}
+
+function CreateNextPrev() {
+  if (!document.getElementById("buttonNext")) {
+    const footer = document.getElementById("footer");
+
+    let button = document.createElement("a");
+    button.classList.add("button");
+    button.id = "buttonPrev";
+    button.innerHTML = "Prev";
+    button.onclick = PrevPlanets;
+    footer.appendChild(button);
+
+    button = document.createElement("a");
+    button.classList.add("button");
+    button.id = "buttonNext";
+    button.innerHTML = "Next";
+    button.onclick = NextPlanets;
+    footer.appendChild(button);
+  }
+}
+
+function DeleteNextPrev() {
+  if (document.getElementById("buttonNext")) {
+    document.getElementById("buttonNext").outerHTML = "";
+    document.getElementById("buttonPrev").outerHTML = "";
+  }
 }
 
 class Character {
@@ -100,7 +162,7 @@ class Character {
   }
 }
 
-class Planet{
+class Planet {
   constructor(name, climate, terrain, population) {
     this.name = name;
     this.climate = climate;
