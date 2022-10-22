@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/CursorHomeWork/lecture17/static/css/main.51f79efc.css",
+    "main.js": "/CursorHomeWork/lecture17/static/js/main.d68b29e5.js",
+    "index.html": "/CursorHomeWork/lecture17/index.html",
+    "main.51f79efc.css.map": "/CursorHomeWork/lecture17/static/css/main.51f79efc.css.map",
+    "main.d68b29e5.js.map": "/CursorHomeWork/lecture17/static/js/main.d68b29e5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.51f79efc.css",
+    "static/js/main.d68b29e5.js"
+  ]
+}
