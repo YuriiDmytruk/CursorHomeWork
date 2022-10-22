@@ -1,10 +1,10 @@
-GetFilms();
+getFilms();
 
-CreateNextPrev();
+createNextPrev();
 
-DeleteNextPrev();
+deleteNextPrev();
 
-async function GetFilms() {
+async function getFilms() {
   document.body.classList.add("waiting");
 
   const request = await fetch("https://swapi.dev/api/films/");
@@ -13,31 +13,31 @@ async function GetFilms() {
   document.body.classList.remove("waiting");
 
   localStorage.setItem("films", JSON.stringify(response.results));
-  AddOptionsToSelect();
+  addOptionsToSelect();
 }
 
-function AddOptionsToSelect() {
+function addOptionsToSelect() {
   const films = JSON.parse(localStorage.getItem("films"));
 
   films.sort((a, b) => (a.episode_id > b.episode_id ? 1 : -1));
 
   films.forEach((element) => {
-    let li = document.createElement("li");
-    let a = document.createElement("a");
-    a.innerHTML = element.episode_id + ". " + element.title;
-    li.id = element.episode_id;
+    let option = document.createElement("li");
+    let optionText = document.createElement("a");
+    optionText.innerHTML = element.episode_id + ". " + element.title;
+    option.id = element.episode_id;
 
-    li.onclick = function () {
-      DeleteNextPrev();
-      GetCharacters(this.id);
+    option.onclick = function () {
+      deleteNextPrev();
+      getCharacters(this.id);
     };
 
-    li.appendChild(a);
-    document.getElementById("filmCkeck").appendChild(li);
+    option.appendChild(optionText);
+    document.getElementById("filmCkeck").appendChild(option);
   });
 }
 
-async function GetCharacters(id) {
+async function getCharacters(id) {
   const film = JSON.parse(localStorage.getItem("films")).find((obj) => {
     return obj.episode_id == id;
   });
@@ -54,14 +54,14 @@ async function GetCharacters(id) {
   }
 
   document.body.classList.remove("waiting");
-  ShowCharacters(characters);
+  showCharacters(characters);
 }
 
-async function GetPlanets(url = "https://swapi.dev/api/planets") {
+async function getPlanets(url = "https://swapi.dev/api/planets") {
   if (!url) {
     url = "https://swapi.dev/api/planets";
   }
-  CreateNextPrev();
+  createNextPrev();
 
   document.body.classList.add("waiting");
 
@@ -72,18 +72,18 @@ async function GetPlanets(url = "https://swapi.dev/api/planets") {
 
   localStorage.setItem("currentPlanetsList", JSON.stringify(response));
 
-  CreatePlanetsList(response);
+  createPlanetsList(response);
 }
 
-function NextPlanets() {
-  GetPlanets(JSON.parse(localStorage.getItem("currentPlanetsList")).next);
+function nextPlanets() {
+  getPlanets(JSON.parse(localStorage.getItem("currentPlanetsList")).next);
 }
 
-function PrevPlanets() {
-  GetPlanets(JSON.parse(localStorage.getItem("currentPlanetsList")).previous);
+function prevPlanets() {
+  getPlanets(JSON.parse(localStorage.getItem("currentPlanetsList")).previous);
 }
 
-function CreatePlanetsList(response) {
+function createPlanetsList(response) {
   let planets = [];
   for (let i = 0; i < response.results.length; i++) {
     planets.push(
@@ -95,10 +95,10 @@ function CreatePlanetsList(response) {
       )
     );
   }
-  ShowPlanets(planets);
+  showPlanets(planets);
 }
 
-function ShowPlanets(planets) {
+function showPlanets(planets) {
   const wrapper = document.getElementById("wrapper");
   wrapper.textContent = '';
 
@@ -106,14 +106,14 @@ function ShowPlanets(planets) {
     let box = document.createElement("div");
     box.classList.add("box");
     box.innerHTML = `Name: ${element.name} \n 
-      Climate: ${element.birth_year} \n
-      Terrain: ${element.birth_year} \n
-      Population: ${element.gender} \n`;
+      Climate: ${element.climate} \n
+      Terrain: ${element.terrain} \n
+      Population: ${element.population} \n`;
     wrapper.appendChild(box);
   });
 }
 
-function ShowCharacters(characters) {
+function showCharacters(characters) {
   const wrapper = document.getElementById("wrapper");
   wrapper.textContent = '';
 
@@ -127,7 +127,7 @@ function ShowCharacters(characters) {
   });
 }
 
-function CreateNextPrev() {
+function createNextPrev() {
   if (!document.getElementById("buttonNext")) {
     const footer = document.getElementById("footer");
 
@@ -135,19 +135,19 @@ function CreateNextPrev() {
     button.classList.add("button");
     button.id = "buttonPrev";
     button.innerHTML = "Prev";
-    button.onclick = PrevPlanets;
+    button.onclick = prevPlanets;
     footer.appendChild(button);
 
     button = document.createElement("a");
     button.classList.add("button");
     button.id = "buttonNext";
     button.innerHTML = "Next";
-    button.onclick = NextPlanets;
+    button.onclick = nextPlanets;
     footer.appendChild(button);
   }
 }
 
-function DeleteNextPrev() {
+function deleteNextPrev() {
   if (document.getElementById("buttonNext")) {
     document.getElementById("buttonNext").outerHTML = "";
     document.getElementById("buttonPrev").outerHTML = "";
