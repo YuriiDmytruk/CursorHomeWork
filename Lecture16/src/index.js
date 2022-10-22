@@ -1,1 +1,1 @@
-const script = require('./Script/script')
+const script = require('./Scripts/script')
