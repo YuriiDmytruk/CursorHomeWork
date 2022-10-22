@@ -1,9 +1,10 @@
-import './App.css';
+
+import Post from './Scripts/Post.js'
 
 function App() {
   return (
     <div>
-      <p>Hello World</p>
+      <Post name="Yura"/>
     </div>
   );
 }
