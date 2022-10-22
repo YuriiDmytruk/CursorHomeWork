@@ -1,3 +1,8 @@
 .Post{
-    color: red;
+    background-color: grey;
+}
+
+.Post img{
+    height: 100px;
+    width: 100px;
 }
