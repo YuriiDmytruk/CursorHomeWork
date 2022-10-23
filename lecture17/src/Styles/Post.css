@@ -1,6 +1,11 @@
 .Post{
     background-color: grey;
+    height: 400px;
+    width: 500px;
+    border-radius: 25px;
 }
+
+
 
 .Post img{
     height: 100px;
