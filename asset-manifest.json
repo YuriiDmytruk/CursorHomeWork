@@ -1,13 +1,16 @@
 {
   "files": {
-    "main.css": "/CursorHomeWork/lecture17/static/css/main.51f79efc.css",
-    "main.js": "/CursorHomeWork/lecture17/static/js/main.d68b29e5.js",
-    "index.html": "/CursorHomeWork/lecture17/index.html",
-    "main.51f79efc.css.map": "/CursorHomeWork/lecture17/static/css/main.51f79efc.css.map",
-    "main.d68b29e5.js.map": "/CursorHomeWork/lecture17/static/js/main.d68b29e5.js.map"
+    "main.css": "/CursorHW18/static/css/main.073c9b0a.css",
+    "main.js": "/CursorHW18/static/js/main.db0d945c.js",
+    "static/js/787.dba5b542.chunk.js": "/CursorHW18/static/js/787.dba5b542.chunk.js",
+    "static/media/logo.svg": "/CursorHW18/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/CursorHW18/index.html",
+    "main.073c9b0a.css.map": "/CursorHW18/static/css/main.073c9b0a.css.map",
+    "main.db0d945c.js.map": "/CursorHW18/static/js/main.db0d945c.js.map",
+    "787.dba5b542.chunk.js.map": "/CursorHW18/static/js/787.dba5b542.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.51f79efc.css",
-    "static/js/main.d68b29e5.js"
+    "static/css/main.073c9b0a.css",
+    "static/js/main.db0d945c.js"
   ]
 }
